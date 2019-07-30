@@ -1,0 +1,24 @@
+h1 {
+ color: black;
+ font-size: 40px
+}
+body {
+  background-color: #D3D3D3;
+  font-family: orator-std, monospace;
+  text-align: center;
+}
+.list {
+  text-align:left;
+}
+a {
+  font-size: 23px;
+  font-weight: bold;
+}
+#footer {
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background: url('../assets/background.jpg') top center no-repeat;
+    background-size: 100%;
+}
