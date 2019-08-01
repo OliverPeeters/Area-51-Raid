@@ -7,6 +7,68 @@
     /*width: 100%;*/
     background: url('John Wick Naruto.png') repeat;
 }
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F3F3F3;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+/* .preloader {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #171717;
+
+  transition: all 0.5s ease-out;
+}
+.preloader .preload-text{
+  color: #F3F3F3;
+  font-size: 28px;
+  font-weight: 300px;
+}
+.preloader .blocks {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  animation: rotate 5s ease-in-out infinite;
+}
+.preloader .blocks .block1 {
+  position: absolute;
+  width: 30px;
+  font-weight: 30px;
+  border-radius: 4px;
+
+  background-color: #FFCE00;
+  transition: all 0.25s linear;
+}
+.preloader .blocks .block1:nth-child(1) {
+  top: 0px;
+  left: 40px;
+}
+.preloader .blocks .block1:nth-child(2) {
+  top: 0px;
+  left: 0px;
+}
+.preloader .blocks .block1:nth-child(3) {
+  top: 40px;
+  left: 0px;
+}
+@keyframes rotate {
+  0% { transform: rotate(0deg)}
+  100% { transform: rotate(360deg)}
+}  */
 #header {
     background-size: cover;
     -webkit-background-size: cover;

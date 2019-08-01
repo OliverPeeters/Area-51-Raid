@@ -19,6 +19,30 @@ a {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background: url('../assets/background.jpg') top center no-repeat;
+    background: url('../assets/Do Not Enter.jpg') top center no-repeat;
     background-size: 100%;
+}
+
+#Naruto{
+  position:absolute;
+  padding-left:10%;
+  padding-top:4%;
+}
+
+#Naruto2{
+  position:absolute;
+  padding-left:80%;
+  padding-top:4%;
+}
+
+#Naruto3{
+  position:absolute;
+  padding-left:10%;
+  padding-top:70%;
+}
+
+#Naruto4{
+  position:absolute;
+  padding-left:80%;
+  padding-top:70%;
 }
