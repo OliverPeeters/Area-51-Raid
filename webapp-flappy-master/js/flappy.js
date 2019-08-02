@@ -7,7 +7,6 @@ var score = 0;
 var isHidden = true;
 var game = new Phaser.Game(790, 400, Phaser.AUTO, 'game', stateActions);
 var enter =0;
-var gameGravity = 100;
 var pipeInterval = 1.75;
 var pipeGap = 100;
 var player;
@@ -68,34 +67,26 @@ function create() {
     .keyboard.addKey(Phaser.Keyboard.SPACEBAR)
     .onDown.add(playerJump);
   var interval = Phaser.Timer.SECOND * 1;
-  game.time.events.loop(interval, updateLabel);
+  // game.time.events.loop(interval, flashLabel);
   game.add.text(20, 10, "score: ",  {font: "20px Comic Sans"});
   labelScore = game.add.text(70, 11, "0", {font: "20px Comic Sans"});
   player = game.add.sprite(50, 150, "playerImg");
   player.anchor.setTo(0.5, 0.5);
   game.physics.startSystem(Phaser.Physics.ARCADE);
   game.physics.arcade.enable(player);
-  player.body.gravity.y= 400;
+  player.body.gravity.y= 800;
   generatePipe();
   var walk = player.animations.add('walk');
   player.animations.play('walk', 10, true);
-
+  game.input.onDown.add(playerJump);
   //game.input
 //  .keyboard.addkey(Phaser.Keyboard.ENTER)
 //  .onDown.add(enterPress)
-var pipeInterval = 1.75 * Phaser.Timer.SECOND;
-game.time.events.loop(pipeInterval, generatePipe);
+  var pipeInterval = 1.75 * Phaser.Timer.SECOND;
+  game.time.events.loop(pipeInterval, generatePipe);
 
   //game.add.sprite(event.x, event.y, "playerImg")
   game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(playerJump);
-
-
-}
-
-function updateLabel() {
-  if (isHidden) {
-    changeScore();
-  }
 }
 
 function enterPress() {
@@ -104,7 +95,12 @@ function enterPress() {
 
 function changeScore() {
   score++;
-  labelScore.setText(score.toString());
+  if(score <= 2) {
+    labelScore.setText("0");
+  }
+  else {
+    labelScore.setText((score-2).toString());
+  }
 };
 
 function spaceHandler() {
@@ -112,7 +108,7 @@ function spaceHandler() {
 };
 
 
-/*function updateLabel() {
+/*function flashLabel() {
   if (isHidden) {
     label.setText("*Alarm* September 20th:\n    time to raid! *Alarm* \n \n \n \n \n Press \"enter\" to Start");
     isHidden = false;
@@ -124,24 +120,26 @@ function spaceHandler() {
   }
 }*/
 
+
 function update () {
   if (player.body.y<0-playerSize){
     gameOver();
   }
+
   if (player.body.y >= 345) {
     player.body.gravity.y = 0;
     //    player.anchor.setTo(0.5, 0);
     player.body.y = 344;
   }
   else {
-    player.body.gravity.y = 400;
+    player.body.gravity.y = 800;
     player.anchor.setTo(0.5, 0.5);
   }
   game.physics.arcade.overlap(player, pipes, gameOver);
 };
 
 function playerJump(){
-  player.body.velocity.y = -180;
+  player.body.velocity.y = -250;
   game.sound.play("score");
 }
 
@@ -152,15 +150,17 @@ function clickHandler(event) {
 function generatePipe() {
   var gapStart = game.rnd.integerInRange(margint, height -  gapSize  - margint)
   var gapEnd = game.rnd.integerInRange(marginb, height -  gapSize  - marginb)
-      for(var y = gapStart - 75; y > -50; y -= blockHeight) {
-        addPipeBlock(width, y);
-      }
-      for(var y = gapStart + gapSize + 25; y < height; y += 50) {
-        addPipeBlock(width, y);
- }
+  for(var y = gapStart - 75; y > -50; y -= 50) {
+    addPipeBlock(width, y);
+  }
+  for(var y = gapStart + gapSize + 25; y < height; y += 50) {
+    addPipeBlock(width, y);
+   }
+   changeScore();
 }
 
 function addPipeBlock(x, y){
+  var fix2 = game.add.sprite(x, 50, "electricFence")
   var fix = game.add.sprite(x, 0, "electricFence")
   var block = game.add.sprite(x, y, "electricFence");
   var run = block.animations.add('run');
@@ -168,7 +168,6 @@ function addPipeBlock(x, y){
   pipes.push(block);
   game.physics.arcade.enable(block);
   block.body.velocity.x = -200;
-
 }
 
 
